@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sorting</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">	
+		<style>
+			body{
+
+				text-align:center;
+			}
+			h1{
+				margin-top:10%;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Guess a number between 1 and 100</h1>
+		<input type="text" id="numberGuess">
+		<input type="submit" id="button" onclick="guessNumber()">
+		<input type ="submit" id="hint" onclick="hintNumber()" value="hint">
+		<h3 id="answer"></h3>
+		<h4 id ="trial"></h4>
+	</body>
+	<script>
+
+
+//global scope
+var random = Math.floor((Math.random()*100) +1);
+console.log("The answer is " + random);
+trial = 10;
+document.getElementById("trial").textContent="trial: 10";
+
+//trial mark
+document.getElementById("button").addEventListener("click",function(){
+
+
+
+trial = trial -1 ;
+
+ document.getElementById("trial").textContent = "trial " + trial;
+
+ if(trial -1 == -1){
+ 	alert("you lose");
+ }
+});
+
+
+//guess work
+function guessNumber(){
+var button = document.getElementById("button");
+var guess = document.getElementById("numberGuess").value;
+if(guess % 1 !=0){
+document.getElementById("answer").innerHTML = "Please type an integer";
+}
+else if(guess > random){
+document.getElementById("answer").textContent = "It is higher than the answer";
+}
+else if(guess < random){
+document.getElementById("answer").innerHTML = "It is lower than the answer";	
+}
+else if(guess == random){
+	document.getElementById("answer").innerHTML = "Correct ";
+}
+}
+
+//hint work
+function hintNumber(){
+var button = document.getElementById("button");
+var guess = document.getElementById("numberGuess").value;
+var hint1 = random-5;
+var hint2= random+5;
+if(random > 5 && random <90){
+document.getElementById("answer").textContent ="It is between "+hint1+" and "+hint2+" ";
+}
+else if(random < 5){
+document.getElementById("answer").textContent ="It is between 1  and "+hint2+" ";	
+}
+else if(random >90) {
+document.getElementById("answer").textContent ="It is between 89  and 100 ";	
+}
+}
+
+
+	</script>
+</html>
